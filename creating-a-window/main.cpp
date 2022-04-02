@@ -3,6 +3,7 @@
 #include <GLFW/glfw3.h>
 
 #include <iostream>
+#include <fstream>
 
 namespace globals {
     int window_width = 800, window_height = 800;
