@@ -34,9 +34,16 @@ file(DOWNLOAD
         ${CMAKE_SOURCE_DIR}/stb_image.h)
 
 set(CMAKE_CXX_STANDARD 14)
+IF(CMAKE_BUILD_TYPE MATCHES RELEASE)
+    message(STATUS "Building for production, statically linking libraries...")
+    set(CMAKE_EXE_LINKER_FLAGS "-static")
+ELSE()
+    message(STATUS "Building for debugging, will not statically link libraries.")
+ENDIF(CMAKE_BUILD_TYPE MATCHES RELEASE)
 
 add_executable(text_rendering main.cpp)
 target_link_libraries(text_rendering PUBLIC glm glad glfw freetype)
+# -static-libgcc -static-libstdc++
 
 file(GLOB SHADERS_FOLDER "shaders/*.glsl")
 file(GLOB FONTS_FOLDER "fonts/*.ttf")

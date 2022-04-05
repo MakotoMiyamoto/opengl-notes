@@ -34,22 +34,20 @@ namespace callbacks {
 }
 
 std::string getShaderSource(const std::string &relativePath) {
-//    std::cout << "This prints.\n";
-//    std::ifstream shaderFile{relativePath};
-//    std::cout << "This does not print.\n";
-//    shaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
-//    std::string source;
-//    try {
-//        std::stringstream shaderStream;
-//        shaderStream << shaderFile.rdbuf();
-//        shaderFile.close();
-//        source = shaderStream.str();
-//    } catch(std::ifstream::failure &e) {
-//        std::cout << "ERROR: Cannot read shader file: " << e.what() << '\n';
-//    }
-//    return source;
-    std::ifstream ifs;
-    return "zilch";
+    std::cout << "This prints.\n";
+    std::ifstream shaderFile{relativePath};
+    std::cout << "This does not print.\n";
+    shaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+    std::string source;
+    try {
+        std::stringstream shaderStream;
+        shaderStream << shaderFile.rdbuf();
+        shaderFile.close();
+        source = shaderStream.str();
+    } catch(std::ifstream::failure &e) {
+        std::cout << "ERROR: Cannot read shader file: " << e.what() << '\n';
+    }
+    return source;
 }
 #define INFO_LOG_SIZE 512
 GLuint createShaderProgram(const char *vertexShaderFilepath, const char *fragmentShaderFilepath) {
